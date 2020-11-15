@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            background-color: orange;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        AFRAME.registerComponent('locationfinder', {
+            init: function () {
+                navigator.geolocation.getCurrentPosition(function (location) {
+                    console.log(location)
+                })
+            }
+        })
+    </script>
+
+    <a-scene embedded arjs="source:webcam;">
+        <a-camera locationfinder gps-camera="simulateLatitude:57.01632;simulateLongitude:9.8729984" rotation-reader>
+        </a-camera>
+        <a-text value="Market" scale="20 20 20 " look-at="[gps-camera]" align="center"
+            gps-entity-place="latitude:57.016999;longitude:9.873276;"></a-text>
+
+        <a-text value="Behind" scale="20 20 20 " look-at="[gps-camera]" align="center"
+            gps-entity-place="latitude:57.017061;longitude:9.872806;"></a-text>
+
+        <a-text value="Front" scale="20 20 20 " look-at="[gps-camera]" align="center"
+            gps-entity-place="latitude:57.016206;longitude:9.873013;"></a-text>
+    </a-scene>
+
+
+    <script src="../src/geoFinder.js"></script>
+</body>
+
+</html>
